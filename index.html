@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pure Perfection Wellness</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #fff6fb;
+  color: #222;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 60px;
+  background: #fff;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+nav a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: #222;
+  font-weight: 400;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #ff66b2;
+}
+
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  background: linear-gradient(to bottom, #ffe6f2, #fff6fb);
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.btn {
+  padding: 12px 30px;
+  border: none;
+  background-color: #ff66b2;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #e0559d;
+}
+
+.products {
+  padding: 80px 60px;
+  text-align: center;
+}
+
+.products h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 40px;
+}
+
+.product-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.product {
+  background: white;
+  padding: 25px;
+  width: 280px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(255, 102, 178, 0.1);
+  transition: 0.3s;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+}
+
+.product img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.product h3 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 10px;
+}
+
+.product span {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+  color: #ff66b2;
+}
+
+.about {
+  padding: 80px 60px;
+  background: #ffe6f2;
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+  padding: 30px;
+  background: #fff;
+  font-size: 0.9rem;
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">Pure Perfection</div>
+  <nav>
+    <a href="#products">Products</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Soft Power. Structured Discipline.</h1>
+  <p>Diva-Level Wellness for the Modern Woman.</p>
+  <button class="btn">Shop Now</button>
+</section>
+
+<section id="products" class="products">
+  <h2>Our Essentials</h2>
+
+  <div class="product-grid">
+    <div class="product">
+      <img src="assets/product1.jpg" alt="Glow Serum">
+      <h3>Diva Glow Serum</h3>
+      <p>Radiance-enhancing formula for confident skin.</p>
+      <span>$48</span>
+    </div>
+
+    <div class="product">
+      <img src="assets/product2.jpg" alt="Discipline Planner">
+      <h3>Structured Discipline Planner</h3>
+      <p>Luxury planning for powerful execution.</p>
+      <span>$35</span>
+    </div>
+
+    <div class="product">
+      <img src="assets/product3.jpg" alt="Wellness Guide">
+      <h3>Soft Power Wellness Guide</h3>
+      <p>Your blueprint to elevated living.</p>
+      <span>$29</span>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <h2>About The Brand</h2>
+  <p>
+    Pure Perfection Wellness was created for women who value elegance,
+    discipline, and self-mastery. This is not just wellness.
+    This is identity elevation.
+  </p>
+</section>
+
+<footer class="footer">
+  <p>© 2026 Pure Perfection Wellness</p>
+</footer>
+
+</body>
+</html>
