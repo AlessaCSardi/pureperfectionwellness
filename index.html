@@ -67,7 +67,7 @@ nav a {
 nav a:hover { color: var(--primary); }
 
 /* Hero */
-.hero {
+..hero {
     position: relative;
     height: 100vh;
     display: flex;
@@ -75,75 +75,79 @@ nav a:hover { color: var(--primary); }
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 20px;
-    margin-top: 80px;
     overflow: hidden;
-    background: linear-gradient(-45deg, #ffd6ec, #fff0f7, #ffe3f2, #ffc0e5);
-    background-size: 400% 400%;
-    animation: gradientShift 12s ease infinite;
+    background: linear-gradient(135deg, #fbe4ef, #f8d6e8, #f3c1e1);
 }
 
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Fade-in animation */
+.hero h1, .hero p, .btn {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease forwards;
 }
 
-.hero::before {
-    content: "";
+.hero h1 { animation-delay: 0.3s; }
+.hero p { animation-delay: 0.6s; }
+.btn { animation-delay: 0.9s; }
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Floating decorative shapes */
+.floating-shape {
     position: absolute;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 60%);
-    animation: sparkle 6s linear infinite;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,46,147,0.3), transparent);
+    animation: float 6s ease-in-out infinite;
 }
 
-@keyframes sparkle {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+.shape1 {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: 10%;
 }
 
+.shape2 {
+    width: 200px;
+    height: 200px;
+    bottom: 15%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.shape3 {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    left: 60%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+}
+
+/* Glow headline */
 .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 7vw, 5rem);
-    margin-bottom: 20px;
-    z-index: 2;
-    position: relative;
-    text-shadow: 0 5px 20px rgba(255, 46, 147, 0.2);
+    font-size: clamp(3rem, 6vw, 5rem);
+    text-shadow: 0 10px 40px rgba(255, 46, 147, 0.25);
 }
 
-.hero i {
-    font-style: italic;
-    font-weight: 400;
-    opacity: 0.85;
-}
-
-.hero p {
-    font-size: 1.3rem;
-    margin-bottom: 40px;
-    z-index: 2;
-    position: relative;
-    color: #6b6b6b;
-}
-
+/* Button pulse effect */
 .btn {
-    padding: 18px 50px;
-    border: none;
-    background: linear-gradient(to right, #ff2e93, #ff5bb0);
-    color: white;
-    font-weight: 600;
-    letter-spacing: 2px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: 0.4s ease;
-    box-shadow: 0 15px 30px rgba(255, 46, 147, 0.3);
-    z-index: 2;
-    position: relative;
+    animation: fadeUp 1s ease forwards, pulse 3s infinite;
 }
 
-.btn:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(255, 46, 147, 0.4);
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 46, 147, 0.4); }
+    70% { box-shadow: 0 0 0 20px rgba(255, 46, 147, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 46, 147, 0); }
 }
 
 /* Products */
@@ -249,6 +253,9 @@ nav a:hover { color: var(--primary); }
 
 <section class="hero">
     <div class="badge" style="margin-bottom: 20px;">Est. 2026</div>
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
     <h1>
         Perfect Wellness.<br>
     </h1>
@@ -343,6 +350,7 @@ nav a:hover { color: var(--primary); }
 
 </body>
 </html>
+
 
 
 
