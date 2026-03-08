@@ -68,50 +68,82 @@ nav a:hover { color: var(--primary); }
 
 /* Hero */
 .hero {
-    height: 90vh;
+    position: relative;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: radial-gradient(circle at top right, #fff6fb, #ffd6ec);
     padding: 0 20px;
     margin-top: 80px;
+    overflow: hidden;
+    background: linear-gradient(-45deg, #ffd6ec, #fff0f7, #ffe3f2, #ffc0e5);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 60%);
+    animation: sparkle 6s linear infinite;
+}
+
+@keyframes sparkle {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(3rem, 7vw, 5rem);
     margin-bottom: 20px;
-    max-width: 800px;
-    line-height: 1.1;
+    z-index: 2;
+    position: relative;
+    text-shadow: 0 5px 20px rgba(255, 46, 147, 0.2);
+}
+
+.hero i {
+    font-style: italic;
+    font-weight: 400;
+    opacity: 0.85;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    color: var(--text-light);
+    font-size: 1.3rem;
     margin-bottom: 40px;
-    font-weight: 300;
+    z-index: 2;
+    position: relative;
+    color: #6b6b6b;
 }
 
 .btn {
-    padding: 16px 40px;
+    padding: 18px 50px;
     border: none;
-    background-color: var(--primary);
+    background: linear-gradient(to right, #ff2e93, #ff5bb0);
     color: white;
     font-weight: 600;
-    text-transform: uppercase;
     letter-spacing: 2px;
-    cursor: pointer;
     border-radius: 50px;
-    box-shadow: 0 10px 20px rgba(255, 46, 147, 0.2);
-    transition: var(--transition);
+    cursor: pointer;
+    transition: 0.4s ease;
+    box-shadow: 0 15px 30px rgba(255, 46, 147, 0.3);
+    z-index: 2;
+    position: relative;
 }
 
 .btn:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(255, 46, 147, 0.3);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(255, 46, 147, 0.4);
 }
 
 /* Products */
@@ -217,9 +249,13 @@ nav a:hover { color: var(--primary); }
 
 <section class="hero">
     <div class="badge" style="margin-bottom: 20px;">Est. 2026</div>
-    <h1>Perfect Wellness.<br><i><living an elevated lifestyle/i></h1>
+    <h1>
+        Perfect Wellness.<br>
+    </h1>
     <p>Structure. Self-growth. Sweet moments.</p>
-    <button class="btn" onclick="document.getElementById('products').scrollIntoView()">Explore Shop</button>
+    <button class="btn" onclick="document.getElementById('products').scrollIntoView()">
+        Explore Shop
+    </button>
 </section>
 
 <section id="products" class="products">
@@ -307,5 +343,6 @@ nav a:hover { color: var(--primary); }
 
 </body>
 </html>
+
 
 
