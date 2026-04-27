@@ -1,105 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Complete Purchase | PW</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #fff6fb;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 25px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-        .product-img {
-            width: 100%;
-            height: 250px;
-            object-fit: contain;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            background: #fdfdfd;
-        }
-        h1 {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 10px;
-            font-size: 1.6rem;
-        }
-        .price {
-            font-size: 2rem;
-            color: #ff2e93;
-            margin: 20px 0;
-            font-weight: 600;
-        }
-        button {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            background: linear-gradient(to right, #ff2e93, #ff5bb0);
-            color: white;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.2s;
-        }
-        button:active { transform: scale(0.98); }
-        .back-link {
-            display: block;
-            margin-top: 20px;
-            color: #999;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Purchase | PW.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose:    #e8336d;
+  --rose-lt: #ff6fa3;
+  --blush:   #fce8f0;
+  --cream:   #fffaf8;
+  --ink:     #1c1118;
+  --muted:   #7a6472;
+  --border:  rgba(232,51,109,0.12);
+  --ease:    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  padding: 20px 5%;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,250,248,0.9);
+  backdrop-filter: blur(12px);
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--rose);
+  text-decoration: none;
+}
+
+.back-link {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--rose); }
+
+/* ── MAIN ── */
+main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 60px 5%;
+  gap: 60px;
+  align-items: start;
+}
+
+/* ── PRODUCT PREVIEW ── */
+.product-preview {
+  position: sticky;
+  top: 100px;
+}
+
+.product-img-wrap {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--blush);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-img-wrap .fallback {
+  font-size: 5rem;
+}
+
+.product-meta { }
+
+.product-type-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  background: rgba(0,0,0,0.04);
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 14px;
+}
+
+.product-name-display {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+
+.product-desc-display {
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ── CHECKOUT CARD ── */
+.checkout-card {
+  background: #fff;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  padding: 36px;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.04);
+  animation: rise 0.8s var(--ease) 0.1s both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.checkout-card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Order summary */
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.order-row.total {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  padding-top: 12px;
+  margin-top: 4px;
+  border-top: 1px solid var(--border);
+}
+
+.order-row .order-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Pickup notice */
+.notice {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.8rem;
+  color: #6d4c00;
+  line-height: 1.5;
+  margin: 20px 0;
+  display: none;
+}
+
+.notice strong { font-weight: 500; }
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(232,51,109,0.08);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Card field placeholder */
+.card-field-placeholder {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 0.84rem;
+  color: var(--muted);
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: text;
+  min-height: 46px;
+}
+
+.card-icons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.card-icon {
+  padding: 4px 8px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #555;
+  background: #fff;
+}
+
+/* Submit */
+.pay-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--rose), var(--rose-lt));
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  margin-top: 24px;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s;
+  box-shadow: 0 8px 24px rgba(232,51,109,0.28);
+}
+
+.pay-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(232,51,109,0.36);
+}
+
+.pay-btn:active { transform: scale(0.99); }
+
+.secure-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+.secure-note svg { opacity: 0.5; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  main { grid-template-columns: 1fr; padding: 36px 5%; gap: 36px; }
+  .product-preview { position: static; }
+  .product-img-wrap { aspect-ratio: 3/2; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
-<div class="container">
-    <img id="item-img" src="" alt="Product" class="product-img">
-    <h1 id="item-name">Loading...</h1>
-    <p>Digital Access / Local Pickup</p>
-    <div class="price" id="item-price">$0.00</div>
-    
-    <button id="checkout-button">Pay with Card</button>
-    
-    <a href="index.html" class="back-link">← Back to Shop</a>
+<div class="topbar">
+  <a href="index.html" class="logo">PW.</a>
+  <a href="index.html" class="back-link">
+    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+    </svg>
+    Back to Shop
+  </a>
 </div>
+
+<main>
+
+  <!-- LEFT: Product preview -->
+  <div class="product-preview">
+    <div class="product-img-wrap">
+      <img id="item-img" src="" alt="Product" onerror="this.style.display='none'; document.getElementById('img-fallback').style.display='flex'">
+      <div id="img-fallback" class="fallback" style="display:none">🛍️</div>
+    </div>
+    <div class="product-meta">
+      <span class="product-type-label" id="product-type-label">Product</span>
+      <div class="product-name-display" id="item-name">Loading…</div>
+      <p class="product-desc-display" id="item-desc"></p>
+    </div>
+  </div>
+
+  <!-- RIGHT: Checkout -->
+  <div>
+    <div class="checkout-card">
+      <h2>Complete Your Order</h2>
+
+      <!-- Order summary -->
+      <div class="order-row">
+        <span id="summary-name">Item</span>
+        <span class="order-price" id="summary-price">$0.00</span>
+      </div>
+      <div class="order-row">
+        <span>Processing fee</span>
+        <span style="font-size:0.82rem;">Included</span>
+      </div>
+      <div class="order-row total">
+        <span>Total due today</span>
+        <span class="order-price" id="summary-total">$0.00</span>
+      </div>
+
+      <!-- Pickup notice (shown for physical items) -->
+      <div class="notice" id="pickup-notice">
+        📍 <strong>Local Pickup — Wilton Manors, FL.</strong> After payment, you'll receive pickup instructions via email.
+      </div>
+
+      <div class="divider">Your details</div>
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="field-name" placeholder="Your full name" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="field-email" placeholder="you@email.com" autocomplete="email">
+      </div>
+
+      <div class="divider">Payment</div>
+
+      <div class="card-icons">
+        <span class="card-icon">VISA</span>
+        <span class="card-icon">MC</span>
+        <span class="card-icon">AMEX</span>
+        <span class="card-icon">Apple Pay</span>
+      </div>
+
+      <!-- Stripe card element will mount here -->
+      <div class="form-group">
+        <label>Card Number</label>
+        <div id="card-number-element" class="card-field-placeholder">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          <span>Card number</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Expiry</label>
+          <div id="card-expiry-element" class="card-field-placeholder">MM / YY</div>
+        </div>
+        <div class="form-group">
+          <label>CVC</label>
+          <div id="card-cvc-element" class="card-field-placeholder">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" opacity="0.4"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span>CVC</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="pay-btn" id="pay-btn">
+        Pay <span id="btn-amount">$0.00</span> Securely
+      </button>
+
+      <p class="secure-note">
+        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+        Secured by Stripe · 256-bit SSL encryption
+      </p>
+    </div>
+  </div>
+
+</main>
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-    // 1. GET DATA FROM THE URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const name = urlParams.get('name') || "PW Product";
-    const price = urlParams.get('price') || "0.00";
-    const img = urlParams.get('img') || "images/default.jpg";
+  // ── Parse URL params ──
+  const params = new URLSearchParams(window.location.search);
+  const name  = params.get('name')  || 'PW Product';
+  const price = params.get('price') || '0.00';
+  const img   = params.get('img')   || '';
 
-    // 2. INJECT DATA INTO THE PAGE
-    document.getElementById('item-name').innerText = name;
-    document.getElementById('item-price').innerText = "$" + price;
-    document.getElementById('item-img').src = img;
-    document.title = "Purchase " + name + " | PW";
+  const isPickup = name.toLowerCase().includes('bracelet') ||
+                   name.toLowerCase().includes('brownie')  ||
+                   name.toLowerCase().includes('bookmark');
 
-    // 3. STRIPE LOGIC (To be finalized with your Stripe Keys)
-    const stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY_HERE'); 
+  // ── Inject into page ──
+  document.title = `Purchase ${name} | PW.`;
+  document.getElementById('item-name').textContent = name;
+  document.getElementById('summary-name').textContent = name;
+  document.getElementById('summary-price').textContent = '$' + parseFloat(price).toFixed(2);
+  document.getElementById('summary-total').textContent = '$' + parseFloat(price).toFixed(2);
+  document.getElementById('btn-amount').textContent = '$' + parseFloat(price).toFixed(2);
 
-    document.getElementById('checkout-button').addEventListener('click', function() {
-        // For now, this just alerts. 
-        // To make it work, you'll need to link this to a Stripe Checkout Session.
-        alert("Redirecting to secure payment for: " + name);
-    });
+  if (img) document.getElementById('item-img').src = img;
+  else document.getElementById('img-fallback').style.display = 'flex';
+
+  // Type label + pickup notice
+  if (isPickup) {
+    document.getElementById('product-type-label').textContent = 'Local Pickup · Wilton Manors';
+    document.getElementById('pickup-notice').style.display = 'block';
+    document.getElementById('item-desc').textContent = 'Hand-crafted with care. After completing your order, pickup details will be sent to your email.';
+  } else {
+    document.getElementById('product-type-label').textContent = 'Digital Download';
+    document.getElementById('item-desc').textContent = 'Instant access after purchase — your download link will be delivered to your inbox immediately.';
+  }
+
+  // ── Stripe (replace YOUR_STRIPE_PUBLIC_KEY_HERE with your real key) ──
+  // const stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY_HERE');
+  // const elements = stripe.elements();
+  // Mount card elements to #card-number-element, #card-expiry-element, #card-cvc-element
+  // On pay-btn click: create payment intent on your server and stripe.confirmCardPayment(...)
+
+  document.getElementById('pay-btn').addEventListener('click', function () {
+    const email = document.getElementById('field-email').value.trim();
+    const fullName = document.getElementById('field-name').value.trim();
+    if (!fullName || !email) {
+      alert('Please enter your name and email to continue.');
+      return;
+    }
+    // TODO: Replace this alert with your Stripe Checkout Session call
+    alert(`Order received for ${name}!\n\nA confirmation will be sent to: ${email}\n\nStripe integration coming soon — connect your backend to complete live payments.`);
+  });
 </script>
-
 </body>
 </html>
